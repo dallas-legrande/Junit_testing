@@ -1,0 +1,57 @@
+package lab7;
+
+import org.junit.Test;
+import static org.junit.Assert.*;
+
+/**
+ * Author: Dallas LeGrande
+ * Date; April 13, 2018
+ * Overview: Lab 7 in CSCI232. Practice on the greedy algorithm that makes change in US cents.
+ * Practice on creating Junit tests to run program
+ * 
+ */
+public class Lab7Test {
+    
+    //array sent in is empty
+    @Test(expected = IllegalArgumentException.class)
+    public void testMakeChangeEmptyArray() {
+        System.out.println("makeChange empty array");
+        int[] a = {};
+        int b = 42;
+        int[] result = Lab7.makeChange(a, b);
+    }
+    
+    //the array returned is not the right size
+    @Test 
+    public void testMakeChangeReturnsWrongArraySize() {
+        System.out.println("makeChange array size not correct, missing coins");
+        int[] a = {1,5,10,25};
+        int b = 42;
+        int expected = 5;
+        int[] test = Lab7.makeChange(a,b);
+        int result = test.length;
+        assertEquals(expected,result);
+    }
+    
+    //the array returned matches the expected output
+    @Test
+    public void testMakeChangeArrayCorrect() {
+        System.out.println("makeChange works for 42");
+        int[] a = {1,5,10,25};
+        int b = 42;
+        int [] result = Lab7.makeChange(a,b);
+        int[] expected = {25,10,5,1,1};
+        assertArrayEquals(expected,result);
+    }
+    
+    //change to be found is not a positive number
+    @Test(expected = IllegalArgumentException.class)
+    public void testMakeChangeNegativeChange() {
+        System.out.println("makeChange negative change requested");
+        int[] a = {};
+        int b = -42;
+        int[] result = Lab7.makeChange(a, b);
+    }
+    //could test that there is a coin of denomination of 1 so that an answer can always be found
+   
+}
